@@ -3,19 +3,18 @@ name: CI
 on:
   workflow_dispatch:
     inputs:
+      my-file-input:
+        description: 'A file input example'
+        required: true
+        default: 'path/to/my-file.txt'
       environment:
         type: environment
         description: Select the environment
       boolean:
         type: boolean
         description: True or False
-      choice:
-        type: choice
-        description: Make a choice
-        options:
-        - foo
-        - bar
-        - baz
+        
+     
 jobs:
   build:
     runs-on: ubuntu-latest

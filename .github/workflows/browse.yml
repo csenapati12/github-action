@@ -1,0 +1,19 @@
+name: Browse File in Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  browse-file:
+    runs-on: ubuntu-latest
+    env:
+      FILE_PATH: ${{ github.event.inputs.file-path }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Show contents of the file
+        run: cat $FILE_PATH

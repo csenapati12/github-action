@@ -1,19 +1,12 @@
-name: CI
+name: CI input json
 
 on:
   workflow_dispatch:
     inputs:
-      my-file-input:
+      user-input:
         description: 'A file input example'
         required: true
-        default: 'path/to/my-file.txt'
-      environment:
-        type: environment
-        description: Select the environment
-      boolean:
-        type: boolean
-        description: True or False
-        
+        default: 'path/to/my-file.txt'      
      
 jobs:
   build:

@@ -1,22 +1,26 @@
-name: CI input json
+name: Browse Local File in Workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      user-input:
-        description: 'A file input example'
-        required: true
-        default: 'path/to/my-file.txt'      
-     
+  push:
+    branches:
+      - main
+
 jobs:
-  build:
+  browse-file:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Upload file as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: local-file
+          path: path/to/local-file.txt
 
-      - name: greet
-        run: | 
-          echo "environment is ${{ github.event.inputs.user-input }} / ${{ inputs.user-input }}"
-         
-          
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: local-file
+          path: downloaded-file
+
+      - name: Use the file
+        run: cat downloaded-file/local-file.txt

@@ -1,9 +1,6 @@
 name: Browse Local File in Workflow
-
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   browse-file:

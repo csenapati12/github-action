@@ -1,23 +1,18 @@
 name: Browse Local File in Workflow
 on:
   workflow_dispatch:
-
+    inputs:
+      my-file-input:
+        description: 'A file input example'
+        required: true
+        default: 'path/to/my-file.txt'
+      environment:
+        type: environment
+        description: Select the environment
+      boolean:
+        type: boolean
+        description: True or False
+     
 jobs:
-  browse-file:
+  build:
     runs-on: ubuntu-latest
-
-    steps:
-      - name: Upload file as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: local-file
-          path: path/to/local-file.txt
-
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: local-file
-          path: downloaded-file
-
-      - name: Use the file
-        run: cat downloaded-file/local-file.txt
